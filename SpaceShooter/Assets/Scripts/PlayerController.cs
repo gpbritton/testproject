@@ -12,7 +12,20 @@ public class PlayerController : MonoBehaviour {
 	public float speed;
 	public float tilt;
 	public Boundary boundary;
+	public GameObject shot;
+	public Transform shotSpawn;
 
+	private float nextFire;
+	public float fireRate;
+
+	//what is the difference between update and fixed update?
+	void Update() {
+		if(Input.GetButton("Fire1") && Time.time > nextFire) {
+			nextFire = Time.time + fireRate;
+			Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+		}
+
+	}
 
 
 	void FixedUpdate() {
